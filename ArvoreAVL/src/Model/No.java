@@ -10,6 +10,13 @@ public class No {
     private No noEsquerdo;
     private No noPai;
 
+    public No(int valor, No noPai) {
+        this.valor = valor;
+        this.noPai = noPai;
+    }
+    
+    
+     
     public int getValor() {
         return valor;
     }

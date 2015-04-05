@@ -9,7 +9,7 @@ import java.util.Scanner;
  * @author DiógenesGalileu
  */
 public class Arvore {
-    public No raiz;
+    private No raiz;
     
     public Arvore(){
         
@@ -17,20 +17,30 @@ public class Arvore {
         
     }
     
-    public void inserirNo(int parValor){
-        raiz = novoNo(raiz,parValor);
-    }
+   
     
-    private No novoNo(No parNo, int parValor){
+   // public int altura(No no){
+//	if (no == null ){
+//	    return -1;
+//	}
+//	else { 
+//	    return 1+Math.max(altura(no.esquerdo),altura(no.direito));
+//			
+//	}
+  //  }
+     public void inserirNo(int parValor){
+        raiz = novoNo(null,raiz,parValor);
+    }
+    private No novoNo(No paiNo,No parNo, int parValor){
         if(parNo == null){
-            return new No(parValor, null, null);
+            return new No(parValor,paiNo);
         }
         else{
             if(parValor > parNo.getValor()){
-                parNo.setNoDireito(novoNo(parNo.getNoDireito(), parValor));
+                parNo.setNoDireito(novoNo(parNo,parNo.getNoDireito(), parValor));
             }
             else{
-                parNo.setNoEsquerdo(novoNo(parNo.getNoEsquerdo(), parValor));
+                parNo.setNoEsquerdo(novoNo(parNo,parNo.getNoEsquerdo(), parValor));
             }
         }        
         return parNo;
@@ -41,37 +51,40 @@ public class Arvore {
     }
     
     private void nosInOrder(No paramNo){
+        if(paramNo.getNoPai()==null){
+            System.out.print("no atual = "+paramNo.getValor() + " ");
+        }
         if(paramNo != null){
             nosInOrder(paramNo.getNoEsquerdo());
-            System.out.print(paramNo.getValor() + " ");
+            System.out.print("/nPai = "+paramNo.getNoPai().getValor()+"no atual = "+paramNo.getValor() + " ");
             nosInOrder(paramNo.getNoDireito());
         }
     }
     
-    public void exibirPreOrder(){
-        nosPreOrdem(raiz);
-    }
+   // public void exibirPreOrder(){
+   //     nosPreOrdem(raiz);
+   // }
     
-    private void nosPreOrdem(No paramNo){
-        if(paramNo != null){
-            System.out.print(paramNo.getValor() + " ");
-            nosPreOrdem(paramNo.getNoEsquerdo());   
-            nosPreOrdem(paramNo.getNoDireito());
-        }
-    }
+   // private void nosPreOrdem(No paramNo){
+   /// //    if(paramNo != null){
+    //        System.out.print(paramNo.getValor() + " ");
+        //    nosPreOrdem(paramNo.getNoEsquerdo());   
+        //    nosPreOrdem(paramNo.getNoDireito());
+      //  }
+   // }
     
-    public void exibirPosOrder(){
-        nosPosOrdem(raiz);
-    }
+   // public void exibirPosOrder(){
+     //   nosPosOrdem(raiz);
+  //  }
     
-    private void nosPosOrdem(No paramNo){
-        if(paramNo != null){            
-            nosPosOrdem(paramNo.getNoEsquerdo());            
-            nosPosOrdem(paramNo.getNoDireito());
-            System.out.print(paramNo.getValor() + " ");
-        }
-    }
-    
+   // private void nosPosOrdem(No paramNo){
+    //    if(paramNo != null){            
+      //      nosPosOrdem(paramNo.getNoEsquerdo());            
+     //       nosPosOrdem(paramNo.getNoDireito());
+     //       System.out.print(paramNo.getValor() + " ");
+     ///   }
+   // }
+//  / / 
     public boolean existeValor(int paramValor){
         return reExisteValor(raiz, paramValor);
     }
@@ -91,10 +104,10 @@ public class Arvore {
         }
     }
     
-    public void entradaDados(String endereço){
+    public void entradaDados(){
         Scanner entrada = null;
         try {
-            entrada = new Scanner(new FileReader(endereço)).useDelimiter(",");
+            entrada = new Scanner(new FileReader("numeros.txt")).useDelimiter(",");
         }
         catch (FileNotFoundException ex) {
         }
