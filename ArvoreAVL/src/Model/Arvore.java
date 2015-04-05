@@ -51,12 +51,14 @@ public class Arvore {
     }
     
     private void nosInOrder(No paramNo){
-        if(paramNo.getNoPai()==null){
-            System.out.print("no atual = "+paramNo.getValor() + " ");
-        }
+       
         if(paramNo != null){
             nosInOrder(paramNo.getNoEsquerdo());
-            System.out.print("/nPai = "+paramNo.getNoPai().getValor()+"no atual = "+paramNo.getValor() + " ");
+            if(paramNo.getNoPai()== null){
+                System.out.print("\nno atual = "+paramNo.getValor() + " ");
+            }else{
+                System.out.print("\nPai = "+paramNo.getNoPai().getValor()+" no atual = "+paramNo.getValor() + " ");
+            }
             nosInOrder(paramNo.getNoDireito());
         }
     }
