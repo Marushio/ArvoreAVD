@@ -1,6 +1,7 @@
 
 package arvoreavl;
 
+import Model.Arvore;
 import java.util.Scanner;
 
 /**

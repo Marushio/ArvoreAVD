@@ -1,4 +1,4 @@
-package arvoreavl;
+package Model;
 
 /**
  * @author DiógenesGalileu
