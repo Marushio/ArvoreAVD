@@ -17,17 +17,21 @@ public class Arvore {
         
     }
     
-   
     
-   // public int altura(No no){
-//	if (no == null ){
-//	    return -1;
-//	}
-//	else { 
-//	    return 1+Math.max(altura(no.esquerdo),altura(no.direito));
-//			
-//	}
-  //  }
+    private int calcFator(No no){
+        
+        return altura(no.getNoEsquerdo())-altura(no.getNoDireito());
+        
+    }
+    private int altura(No no){
+	if (no == null ){
+	    return -1;
+	}
+	else { 
+	    return 1+Math.max(altura(no.getNoEsquerdo()),altura(no.getNoDireito()));
+			
+	}
+    }
      public void inserirNo(int parValor){
         raiz = novoNo(null,raiz,parValor);
     }
@@ -55,9 +59,9 @@ public class Arvore {
         if(paramNo != null){
             nosInOrder(paramNo.getNoEsquerdo());
             if(paramNo.getNoPai()== null){
-                System.out.print("\nno atual = "+paramNo.getValor() + " ");
+                System.out.print("\nno atual = "+paramNo.getValor() + " Fator bala = "+calcFator(paramNo)+" ");
             }else{
-                System.out.print("\nPai = "+paramNo.getNoPai().getValor()+" no atual = "+paramNo.getValor() + " ");
+                System.out.print("\nPai = "+paramNo.getNoPai().getValor()+" no atual = "+paramNo.getValor() +" Fator bala = "+calcFator(paramNo)+ " ");
             }
             nosInOrder(paramNo.getNoDireito());
         }
