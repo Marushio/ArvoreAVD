@@ -5,7 +5,7 @@ import Model.Arvore;
 import java.util.Scanner;
 
 /**
- * @author DiógenesGalileu
+ * @author nós
  */
 public class Arvore_AVL {
 

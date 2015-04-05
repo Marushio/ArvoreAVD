@@ -1,7 +1,7 @@
 package Model;
 
 /**
- * @author DiógenesGalileu
+ * @author nós
  */
 public class No {
     

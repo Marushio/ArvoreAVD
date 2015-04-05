@@ -6,23 +6,21 @@ import java.io.FileReader;
 import java.util.Scanner;
 
 /**
- * @author DiógenesGalileu
+ * @author Nós
  */
 public class Arvore {
     private No raiz;
     
-    public Arvore(){
-        
-        raiz=null;
-        
+    public Arvore(){  
+        raiz=null;     
     }
-    
-    
+   //Função que calcula o fator de balanceamento de um nó
     private int calcFator(No no){
         
         return altura(no.getNoEsquerdo())-altura(no.getNoDireito());
         
     }
+    //Função que calcula o fator a altura de um nó
     private int altura(No no){
 	if (no == null ){
 	    return -1;
@@ -32,9 +30,11 @@ public class Arvore {
 			
 	}
     }
+    // Função para inserir um novo nó
      public void inserirNo(int parValor){
         raiz = novoNo(null,raiz,parValor);
     }
+     //Função recursiva, usada na inserção de um nó
     private No novoNo(No paiNo,No parNo, int parValor){
         if(parNo == null){
             return new No(parValor,paiNo);
@@ -49,11 +49,24 @@ public class Arvore {
         }        
         return parNo;
     }
-       
+    //Função de rotação simples a Direita, ultilizada para o equilibrio da arvore
+    private void rSD(No p){        
+        No u =p.getNoEsquerdo();
+        
+        u.setNoPai(p.getNoPai());
+        p.setNoPai(u);
+        p.setNoEsquerdo(u.getNoDireito());
+        u.setNoDireito(p);
+    
+    } 
+    
+    
+    
+    //Função que exibe a arvore de forma InOrder
     public void exibirInOrder(){
         nosInOrder(raiz);
     }
-    
+    //Função Recusiva usada na exibição In Order da arvore
     private void nosInOrder(No paramNo){
        
         if(paramNo != null){
