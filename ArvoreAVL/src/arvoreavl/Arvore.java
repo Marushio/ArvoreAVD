@@ -25,11 +25,11 @@ public class Arvore {
             return new No(parValor, null, null);
         }
         else{
-            if(parValor > parNo.valor){
-                parNo.noDireito = novoNo(parNo.noDireito, parValor);
+            if(parValor > parNo.getValor()){
+                parNo.setNoDireito(novoNo(parNo.getNoDireito(), parValor));
             }
             else{
-                parNo.noEsquerdo = novoNo(parNo.noEsquerdo, parValor);
+                parNo.setNoEsquerdo(novoNo(parNo.getNoEsquerdo(), parValor));
             }
         }        
         return parNo;
@@ -41,9 +41,9 @@ public class Arvore {
     
     private void nosInOrder(No paramNo){
         if(paramNo != null){
-            nosInOrder(paramNo.noEsquerdo);
-            System.out.print(paramNo.valor + " ");
-            nosInOrder(paramNo.noDireito);
+            nosInOrder(paramNo.getNoEsquerdo());
+            System.out.print(paramNo.getValor() + " ");
+            nosInOrder(paramNo.getNoDireito());
         }
     }
     
@@ -53,9 +53,9 @@ public class Arvore {
     
     private void nosPreOrdem(No paramNo){
         if(paramNo != null){
-            System.out.print(paramNo.valor + " ");
-            nosPreOrdem(paramNo.noEsquerdo);   
-            nosPreOrdem(paramNo.noDireito);
+            System.out.print(paramNo.getValor() + " ");
+            nosPreOrdem(paramNo.getNoEsquerdo());   
+            nosPreOrdem(paramNo.getNoDireito());
         }
     }
     
@@ -65,9 +65,9 @@ public class Arvore {
     
     private void nosPosOrdem(No paramNo){
         if(paramNo != null){            
-            nosPosOrdem(paramNo.noEsquerdo);            
-            nosPosOrdem(paramNo.noDireito);
-            System.out.print(paramNo.valor + " ");
+            nosPosOrdem(paramNo.getNoEsquerdo());            
+            nosPosOrdem(paramNo.getNoDireito());
+            System.out.print(paramNo.getValor() + " ");
         }
     }
     
@@ -79,14 +79,14 @@ public class Arvore {
         if (paramNo == null){
             return false;
         }
-        if (paramNo.valor == paramValor){
+        if (paramNo.getValor() == paramValor){
             return true;
         }
-        if(paramValor < paramNo.valor){
-            return reExisteValor(paramNo.noEsquerdo, paramValor);
+        if(paramValor < paramNo.getValor()){
+            return reExisteValor(paramNo.getNoEsquerdo(), paramValor);
         }
         else{
-            return reExisteValor(paramNo.noDireito, paramValor);
+            return reExisteValor(paramNo.getNoDireito(), paramValor);
         }
     }
     
