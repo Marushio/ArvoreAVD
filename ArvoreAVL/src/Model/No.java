@@ -5,7 +5,7 @@ package Model;
  */
 public class No {
     
-    private int valor;
+    private int valor,fatorB;
     private No noDireito;
     private No noEsquerdo;
     private No noPai;
@@ -13,6 +13,15 @@ public class No {
     public No(int valor, No noPai) {
         this.valor = valor;
         this.noPai = noPai;
+        this.fatorB=0;
+    }
+
+    public int getFatorB() {
+        return fatorB;
+    }
+
+    public void setFatorB(int fatorB) {
+        this.fatorB = fatorB;
     }
     
     
