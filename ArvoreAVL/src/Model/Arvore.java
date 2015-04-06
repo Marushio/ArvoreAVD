@@ -19,19 +19,23 @@ public class Arvore {
      public void inserirNo(int parValor){
         raiz = novoNo(null,raiz,parValor);
         organizarArvore();
+        
     }
      //Função recursiva, usada na inserção de um nó
     private No novoNo(No paiNo,No parNo, int parValor){
+        
         if(parNo == null){
             return new No(parValor,paiNo);
         }
         else{
+            
             if(parValor > parNo.getValor()){
                 parNo.setNoDireito(novoNo(parNo,parNo.getNoDireito(), parValor));
             }
             else{
                 parNo.setNoEsquerdo(novoNo(parNo,parNo.getNoEsquerdo(), parValor));
             }
+             
         }
         
         return parNo;
@@ -45,6 +49,9 @@ public class Arvore {
         if(paramNo != null){            
            posOrdem(paramNo.getNoEsquerdo());            
            posOrdem(paramNo.getNoDireito());
+           if(paramNo.getNoPai()==null){
+               raiz=paramNo;
+           }
            escolhaRot(paramNo);
         }
      }
@@ -57,17 +64,17 @@ public class Arvore {
                 System.out.print("Aqui 1 ");
             }else{
                 rDD(no);
-                System.out.print("Aqui 1 ");
+                System.out.print("Aqui 2 ");
             }
             
         }
         if(calcFator(no) <= -2){
             if(calcFator(no.getNoDireito()) < 0){
                 rSE(no);
-                System.out.print("Aqui 1 ");
+                System.out.print("Aqui 3 ");
             }else{
                 rDE(no);
-                System.out.print("Aqui 1 ");
+                System.out.print("Aqui 4 ");
             }
                 
            
@@ -92,19 +99,29 @@ public class Arvore {
     }
     
     //Função de rotação simples a Direita, ultilizada para o equilibrio da arvore
-    private void rSD(No p){        
+    private void rSD(No p){ 
         No u =p.getNoEsquerdo();
+        System.out.print("Aqui rsd ");
+        if(p.getNoPai()==null){
+            raiz=u;
+            System.out.print("Aqui  raiz rsd ");
+        } 
         
         u.setNoPai(p.getNoPai());
         p.setNoPai(u);
         p.setNoEsquerdo(u.getNoDireito());
         u.setNoDireito(p);
-    
+        
     } 
     
      //Função de rotação simples a Esquerda, ultilizada para o equilibrio da arvore
     private void rSE(No p){        
         No u =p.getNoEsquerdo();
+        if(p.getNoPai()==null){
+            raiz=u;
+            System.out.print("Aqui  raiz rse ");
+        } 
+        
         
         u.setNoPai(p.getNoPai());
         p.setNoPai(u);
@@ -116,6 +133,10 @@ public class Arvore {
     private void rDD(No p){        
         No u =p.getNoEsquerdo();
         No v =u.getNoDireito();
+        if(p.getNoPai()==null){
+            raiz=v;
+            System.out.print("Aqui  raiz rdd ");
+        } 
         
         v.setNoPai(p.getNoPai());
         p.setNoPai(v);
@@ -130,6 +151,10 @@ public class Arvore {
     private void rDE(No p){        
         No u =p.getNoEsquerdo();
         No v =u.getNoDireito();
+        if(p.getNoPai()==null){
+            raiz=v;
+            System.out.print("Aqui  raiz rde ");
+        } 
         
         v.setNoPai(p.getNoPai());
         p.setNoPai(v);
