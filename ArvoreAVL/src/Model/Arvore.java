@@ -14,6 +14,66 @@ public class Arvore {
     public Arvore(){  
         raiz=null;     
     }
+
+    // Função para inserir um novo nó
+     public void inserirNo(int parValor){
+        raiz = novoNo(null,raiz,parValor);
+        organizarArvore();
+    }
+     //Função recursiva, usada na inserção de um nó
+    private No novoNo(No paiNo,No parNo, int parValor){
+        if(parNo == null){
+            return new No(parValor,paiNo);
+        }
+        else{
+            if(parValor > parNo.getValor()){
+                parNo.setNoDireito(novoNo(parNo,parNo.getNoDireito(), parValor));
+            }
+            else{
+                parNo.setNoEsquerdo(novoNo(parNo,parNo.getNoEsquerdo(), parValor));
+            }
+        }
+        
+        return parNo;
+    }
+    //metodo que percorre a arvore toda para verificar o fator de Balenceamento de cada nó
+    public void organizarArvore(){
+         posOrdem(raiz);
+    }
+    //metodo recursivo para percorrer a arvore em pos order para Calcular o balanceamento dos nós
+    private void posOrdem(No paramNo){
+        if(paramNo != null){            
+           posOrdem(paramNo.getNoEsquerdo());            
+           posOrdem(paramNo.getNoDireito());
+           escolhaRot(paramNo);
+        }
+     }
+    
+    //Função que escolhe a rotação certa a se fazer
+    private void escolhaRot(No no){
+        if (calcFator(no) >= 2){
+            if(calcFator(no.getNoEsquerdo()) >= 0){
+                rSD(no);
+                System.out.print("Aqui 1 ");
+            }else{
+                rDD(no);
+                System.out.print("Aqui 1 ");
+            }
+            
+        }
+        if(calcFator(no) <= -2){
+            if(calcFator(no.getNoDireito()) < 0){
+                rSE(no);
+                System.out.print("Aqui 1 ");
+            }else{
+                rDE(no);
+                System.out.print("Aqui 1 ");
+            }
+                
+           
+        }
+    
+    }
    //Função que calcula o fator de balanceamento de um nó
     private int calcFator(No no){
         
@@ -30,25 +90,7 @@ public class Arvore {
 			
 	}
     }
-    // Função para inserir um novo nó
-     public void inserirNo(int parValor){
-        raiz = novoNo(null,raiz,parValor);
-    }
-     //Função recursiva, usada na inserção de um nó
-    private No novoNo(No paiNo,No parNo, int parValor){
-        if(parNo == null){
-            return new No(parValor,paiNo);
-        }
-        else{
-            if(parValor > parNo.getValor()){
-                parNo.setNoDireito(novoNo(parNo,parNo.getNoDireito(), parValor));
-            }
-            else{
-                parNo.setNoEsquerdo(novoNo(parNo,parNo.getNoEsquerdo(), parValor));
-            }
-        }        
-        return parNo;
-    }
+    
     //Função de rotação simples a Direita, ultilizada para o equilibrio da arvore
     private void rSD(No p){        
         No u =p.getNoEsquerdo();
@@ -59,6 +101,44 @@ public class Arvore {
         u.setNoDireito(p);
     
     } 
+    
+     //Função de rotação simples a Esquerda, ultilizada para o equilibrio da arvore
+    private void rSE(No p){        
+        No u =p.getNoEsquerdo();
+        
+        u.setNoPai(p.getNoPai());
+        p.setNoPai(u);
+        p.setNoDireito(u.getNoEsquerdo());
+        u.setNoEsquerdo(p);
+    
+    }
+     //Função de rotação Dupla a direita, ultilizada para o equilibrio da arvore
+    private void rDD(No p){        
+        No u =p.getNoEsquerdo();
+        No v =u.getNoDireito();
+        
+        v.setNoPai(p.getNoPai());
+        p.setNoPai(v);
+        v.setNoDireito(p);
+        v.setNoEsquerdo(u);
+        u.setNoDireito(v.getNoEsquerdo());
+        p.setNoEsquerdo(v.getNoDireito());
+        u.setNoPai(v);
+    }
+    
+     //Função de rotação Dupla a esquerda, ultilizada para o equilibrio da arvore
+    private void rDE(No p){        
+        No u =p.getNoEsquerdo();
+        No v =u.getNoDireito();
+        
+        v.setNoPai(p.getNoPai());
+        p.setNoPai(v);
+        v.setNoDireito(u);
+        v.setNoEsquerdo(p);
+        p.setNoDireito(v.getNoEsquerdo());
+        u.setNoEsquerdo(v.getNoDireito());
+        u.setNoPai(v);
+    }
     
     
     
@@ -72,13 +152,14 @@ public class Arvore {
         if(paramNo != null){
             nosInOrder(paramNo.getNoEsquerdo());
             if(paramNo.getNoPai()== null){
-                System.out.print("\nno atual = "+paramNo.getValor() + " Fator bala = "+calcFator(paramNo)+" ");
+                System.out.print("\nno atual = "+paramNo.getValor() + " Fator B = "+calcFator(paramNo)+" ");
             }else{
-                System.out.print("\nPai = "+paramNo.getNoPai().getValor()+" no atual = "+paramNo.getValor() +" Fator bala = "+calcFator(paramNo)+ " ");
+                System.out.print("\nno atual = "+paramNo.getValor()+" Fator B = "+calcFator(paramNo)+" Pai = "+paramNo.getNoPai().getValor()+ " ");
             }
             nosInOrder(paramNo.getNoDireito());
         }
     }
+    
     
    // public void exibirPreOrder(){
    //     nosPreOrdem(raiz);

@@ -35,7 +35,7 @@ public class Arvore_AVL {
         System.out.println("");
         boolean segue = false;
                 
-        System.out.println("Digite o valor a ser buscado.");            
+       /* System.out.println("Digite o valor a ser buscado.");            
         try{
             int key = entrada.nextInt();
             if(arvore.existeValor(key)==true){
@@ -50,5 +50,6 @@ public class Arvore_AVL {
             System.out.println("Digite um número inteiro.");
             segue = true;
         }
+               */
     }
 }
