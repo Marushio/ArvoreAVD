@@ -18,13 +18,13 @@ public class Arvore_AVL {
         boolean continuar = true;
         while(continuar == true){
             try{
-                System.out.println("\n---------------Menu------------------");
-                System.out.println("Inserir um novo valor ------------- 1");
-                System.out.println("Exibir a tarvessia In Order  ------ 2");
-                System.out.println("Exibir a tarvessia Pos Order ------ 3");
-                System.out.println("Exibir a tarvessia Pré Order ------ 4");
-                System.out.println("Procurar um valor na arvore ------- 5");
-                System.out.println("Sair ------------------------------ 6");
+                System.out.println("\n----------------Menu------------------");
+                System.out.println("-Inserir um novo valor ------------- 1");
+                System.out.println("-Exibir a tarvessia In Order  ------ 2");
+                System.out.println("-Exibir a tarvessia Pos Order ------ 3");
+                System.out.println("-Exibir a tarvessia Pré Order ------ 4");
+                System.out.println("-Procurar um valor na arvore ------- 5");
+                System.out.println("-Sair ------------------------------ 6");
                 System.out.println("Digite uma opçao: ");
                 opcao=Integer.parseInt(entrada.next());
                 
@@ -60,7 +60,6 @@ public class Arvore_AVL {
             }    
             
         }
-        arvore.entradaDados();
    
     }
 }

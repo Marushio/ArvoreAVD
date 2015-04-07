@@ -1,7 +1,5 @@
 package Model;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.util.Scanner;
+
 
 /**
  * @author Nós
@@ -109,7 +107,9 @@ public class Arvore {
     }
     //Função que exibe a arvore de forma InOrder
     public void exibirInOrder(){
-        System.out.print("\nno atual = "+raiz.getValor());
+        if(raiz==null){
+            System.out.println("Arvore Vazia !");
+        }else
         nosInOrder(raiz);
     }
     //Função Recusiva usada na exibição In Order da arvore
@@ -126,11 +126,14 @@ public class Arvore {
         }
     }
     
-    
+    //Função que exibe a arvore de forma PreOrder
     public void exibirPreOrder(){
-        nosPreOrdem(raiz);
+        if(raiz==null){
+            System.out.println("Arvore Vazia !");
+        }else
+            nosPreOrdem(raiz);
     }
-    
+    //Função Recusiva usada na exibição Pre Order da arvore
     private void nosPreOrdem(No paramNo){
        if(paramNo != null){
            System.out.print(paramNo.getValor() + " ");
@@ -138,11 +141,14 @@ public class Arvore {
            nosPreOrdem(paramNo.getNoDireito());
        }
     }
-    
+    //Função que exibe a arvore de forma PosOrder
     public void exibirPosOrder(){
-      nosPosOrdem(raiz);
+        if(raiz==null){
+            System.out.println("Arvore Vazia !");
+        }else
+            nosPosOrdem(raiz);
     }
-    
+    //Função Recusiva usada na exibição Pos Order da arvore
     private void nosPosOrdem(No paramNo){
        if(paramNo != null){            
          nosPosOrdem(paramNo.getNoEsquerdo());            
@@ -151,7 +157,7 @@ public class Arvore {
        } 
     } 
     
-    //Funções de procura an arvore
+    //Funções de procura na arvore
     public void existeValor(int paramValor){
         if(reExisteValor(raiz, paramValor) == true){
             System.out.println("O valor está na árvore.");
@@ -159,6 +165,7 @@ public class Arvore {
             System.out.println("O valor não está na árvore");
         }
     }
+    //Função Recursiva para encontrar o numero procurado na arvore
     
     private boolean reExisteValor(No paramNo, int paramValor){
         if (paramNo == null){
@@ -174,17 +181,5 @@ public class Arvore {
             return reExisteValor(paramNo.getNoDireito(), paramValor);
         }
     }
-    //metodo recursivo usado para inseriri novos dados
-    public void entradaDados(){
-        Scanner entrada = null;
-        try {
-            entrada = new Scanner(new FileReader("numeros.txt")).useDelimiter(",");
-        }
-        catch (FileNotFoundException ex) {
-        }
-        while(entrada.hasNext()){
-            inserirNo(entrada.nextInt());
-        }
-               
-    }
+   
 }
