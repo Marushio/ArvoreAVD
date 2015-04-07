@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 /**
  * @author nós
+ * Versão Final sem o extra
  */
 public class Arvore_AVL {
 
