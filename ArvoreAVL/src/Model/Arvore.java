@@ -1,6 +1,4 @@
 package Model;
-
-import Model.No;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Scanner;
@@ -141,20 +139,25 @@ public class Arvore {
        }
     }
     
-   // public void exibirPosOrder(){
-     //   nosPosOrdem(raiz);
-  //  }
+    public void exibirPosOrder(){
+      nosPosOrdem(raiz);
+    }
     
-   // private void nosPosOrdem(No paramNo){
-    //    if(paramNo != null){            
-      //      nosPosOrdem(paramNo.getNoEsquerdo());            
-     //       nosPosOrdem(paramNo.getNoDireito());
-     //       System.out.print(paramNo.getValor() + " ");
-     ///   }
-   // }
-//  / / 
-    public boolean existeValor(int paramValor){
-        return reExisteValor(raiz, paramValor);
+    private void nosPosOrdem(No paramNo){
+       if(paramNo != null){            
+         nosPosOrdem(paramNo.getNoEsquerdo());            
+          nosPosOrdem(paramNo.getNoDireito());
+          System.out.print(paramNo.getValor() + " ");
+       } 
+    } 
+    
+    //Funções de procura an arvore
+    public void existeValor(int paramValor){
+        if(reExisteValor(raiz, paramValor) == true){
+            System.out.println("O valor está na árvore.");
+        }else{
+            System.out.println("O valor não está na árvore");
+        }
     }
     
     private boolean reExisteValor(No paramNo, int paramValor){
@@ -171,7 +174,7 @@ public class Arvore {
             return reExisteValor(paramNo.getNoDireito(), paramValor);
         }
     }
-    
+    //metodo recursivo usado para inseriri novos dados
     public void entradaDados(){
         Scanner entrada = null;
         try {
