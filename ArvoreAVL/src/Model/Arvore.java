@@ -75,20 +75,23 @@ public class Arvore {
     //Função de rotação simples a Direita, ultilizada para o equilibrio da arvore
     private No rSD(No p){ 
         No u =p.getNoEsquerdo();  
-        
+        u.setNoPai(p.getNoPai());
         p.setNoEsquerdo(u.getNoDireito());
         u.setNoDireito(p);
         p.setFatorB(Math.max(altura(p.getNoEsquerdo()),altura(p.getNoDireito()))+1);
         u.setFatorB(Math.max(altura(u.getNoEsquerdo()),p.getFatorB())+1);
+        p.setNoPai(u);
         return u;
     } 
      //Função de rotação simples a Esquerda, ultilizada para o equilibrio da arvore
     private No rSE(No p){        
         No u =p.getNoDireito();
+        u.setNoPai(p.getNoPai());
         p.setNoDireito(u.getNoEsquerdo());
         u.setNoEsquerdo(p);
         p.setFatorB(Math.max(altura(p.getNoEsquerdo()),altura(p.getNoDireito()))+1);
         u.setFatorB(Math.max(altura(u.getNoDireito()),p.getFatorB())+1);
+        p.setNoPai(u);
         return u;
         
     }
@@ -117,11 +120,7 @@ public class Arvore {
        
         if(paramNo != null){
             nosInOrder(paramNo.getNoEsquerdo());
-            if(paramNo.getNoPai()== null){
-                System.out.print("\nno atual = "+paramNo.getValor() + " Fator B = "+calcFator(paramNo)+" ");
-            }else{
-                System.out.print("\nno atual = "+paramNo.getValor()+" Fator B = "+calcFator(paramNo)+" Pai = "+paramNo.getNoPai().getValor()+ " ");
-            }
+            System.out.print(paramNo.getValor() + " ");
             nosInOrder(paramNo.getNoDireito());
         }
     }
@@ -158,12 +157,8 @@ public class Arvore {
     } 
     
     //Funções de procura na arvore
-    public void existeValor(int paramValor){
-        if(reExisteValor(raiz, paramValor) == true){
-            System.out.println("O valor está na árvore.");
-        }else{
-            System.out.println("O valor não está na árvore");
-        }
+    public boolean existeValor(int paramValor){
+        return(reExisteValor(raiz, paramValor));
     }
     //Função Recursiva para encontrar o numero procurado na arvore
     

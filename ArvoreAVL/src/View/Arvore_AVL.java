@@ -32,7 +32,13 @@ public class Arvore_AVL {
                     case 1:
                         System.out.println("Digite o valor para inserir na Arvore:"); 
                         key = Integer.parseInt(entrada.next());
-                        arvore.inserirNo(key);
+                        if(arvore.existeValor(key) != true){
+                                arvore.inserirNo(key);
+                                System.out.println("Valor incerido com Sucesso!");
+                        }else{
+                            System.out.println("O valor digitado ja esta na arvore.");
+                        }
+                        
                         break;
                     case 2:
                         System.out.println("Arvore InOrder:");
@@ -49,7 +55,11 @@ public class Arvore_AVL {
                     case 5:  
                         System.out.println("Digite o valor a ser buscado:"); 
                         key = Integer.parseInt(entrada.next());
-                        arvore.existeValor(key);
+                        if(arvore.existeValor(key) == true){
+                            System.out.println("O valor está na árvore.");
+                        }else{
+                            System.out.println("O valor não está na árvore");
+                        }
                         break;
                     case 6: 
                         continuar =false;
