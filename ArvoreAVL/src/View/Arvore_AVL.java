@@ -65,6 +65,9 @@ public class Arvore_AVL {
                     case 6: 
                         continuar =false;
                         break;
+                    default:
+                        System.out.println("Digite uma opção válida!");
+                        break;
                 }
             }catch(NumberFormatException e){
                 System.out.println("Digite um número inteiro.");        

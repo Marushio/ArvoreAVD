@@ -22,10 +22,8 @@ public class No {
 
     public void setFatorB(int fatorB) {
         this.fatorB = fatorB;
-    }
-    
-    
-     
+    } 
+         
     public int getValor() {
         return valor;
     }
